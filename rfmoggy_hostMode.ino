@@ -1,6 +1,6 @@
-#include <ESP8266WiFi.h>
+#include <WiFi.h>
 #include <WiFiClient.h>
-#include <ESP8266WebServer.h>
+#include <WebServer.h>
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
 //#include <cc1101_debug_service.h>
 
@@ -20,8 +20,8 @@ IPAddress subnet(255,255,255,0);
 
 
 
-ESP8266WebServer server(80);   //instantiate server at port 80 (http port)
-
+WebServer server(80);   //instantiate server at port 80 (http port)
+int gdo2;
 int gdo0;
 byte bytesToSend[1036];
 byte sendPacket[60];
@@ -465,7 +465,8 @@ void setup(void){
   Serial.begin(115200);
 
   //Setup CC1101 Radio
-  gdo0 = 5; //for esp8266 gdo0 on pin 5 = D1
+  gdo0 = 13; //for esp8266 gdo0 on pin 5 = D1
+  gdo2 = 10;
 
   ELECHOUSE_cc1101.Init();  
   ELECHOUSE_cc1101.setGDO0(gdo0);  //set gdo0 pinMode to INPUT
